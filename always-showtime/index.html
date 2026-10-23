@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>CYBER_COMMAND_CENTER</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- スタイルを別ファイルにするかCSS部に書く -->
+</head>
+<body>
+
+    <!-- 背景のThree.js用キャンバス -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- ▼ 画面左右の切り替えボタン（固定配置） -->
+    <button id="prev-btn" class="nav-arrow left-arrow">◀</button>
+    <button id="next-btn" class="nav-arrow right-arrow">▶</button>
+
+    <!-- メインコンテンツ領域 -->
+    <div class="command-container">
+
+        <!-- 【ページ1】 システムモニター（今のCPU・ネットワーク・時間） -->
+        <div class="panel active" data-index="0">
+            <h2 class="panel-title">// PAGE 01: SYSTEM_METRICS</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>SYSTEM_TIME</h3>
+                    <div id="day-area" style="font-size: 14px; opacity: 0.8;"></div>
+                    <div id="time-area" class="metric-value">--:--:--</div>
+                </div>
+                <div class="card">
+                    <h3>CPU_USAGE</h3>
+                    <div id="cpu-area" class="metric-value">CPU: --%</div>
+                    <button id="cpu-btn" class="cyber-btn">FETCH_CPU</button>
+                </div>
+                <div class="card">
+                    <h3>NETWORK_SPEED</h3>
+                    <div id="net-area" class="metric-value" style="font-size: 14px;">未測定</div>
+                    <input type="button" id="net-btn" class="cyber-btn" value="RUN_SPEEDTEST">
+                </div>
+            </div>
+        </div>
+
+        <!-- 【ページ2】 ネットワークログ・ターミナル風画面（例） -->
+        <div class="panel" data-index="1">
+            <h2 class="panel-title">// PAGE 02: SECURITY_LOGS & TERMINAL</h2>
+            <div class="card" style="grid-column: span 3; height: 350px; overflow-y: auto;">
+                <h3>LIVE_TRAFFIC_LOG</h3>
+                <p style="color: #00ff66; font-family: monospace; opacity: 0.8;">
+                    [INFO] 13:38:02 - Secure tunnel established.<br>
+                    [WATCH] Monitoring port 8000 (FastAPI backend)...<br>
+                    [STATUS] Firewall active. Zero anomalies detected.<br>
+                    > Ready for next command...
+                </p>
+            </div>
+        </div>
+
+        <!-- 【ページ3】 インフラ・コンテナ管理（将来のDocker用など） -->
+        <div class="panel" data-index="2">
+            <h2 class="panel-title">// PAGE 03: INFRASTRUCTURE & CONTAINERS</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h3>DOCKER_STATUS</h3>
+                    <div class="metric-value" style="font-size: 18px; color: #ffaa00;">STANDBY</div>
+                    <p style="font-size: 12px; margin-top: 10px;">Nginx Proxy: OFFLINE</p>
+                </div>
+                <div class="card">
+                    <h3>DATABASE</h3>
+                    <div class="metric-value" style="font-size: 18px; color: #ffaa00;">STANDBY</div>
+                    <p style="font-size: 12px; margin-top: 10px;">PostgreSQL: OFFLINE</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- メインのJSを読み込み -->
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>
